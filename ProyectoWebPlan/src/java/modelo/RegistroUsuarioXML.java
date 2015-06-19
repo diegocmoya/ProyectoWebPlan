@@ -19,13 +19,13 @@ import org.jdom2.output.XMLOutputter;
  *
  * @author Diego castro
  */
-public class RegistroUsuario {
+public class RegistroUsuarioXML {
     
      private Document documento;
     private Element raiz;
     private String ruta;
     
-    private RegistroUsuario(String ruta) throws IOException, JDOMException{
+    private RegistroUsuarioXML(String ruta) throws IOException, JDOMException{
         SAXBuilder saxb= new SAXBuilder();
         saxb.setIgnoringElementContentWhitespace(true);
         this.documento=saxb.build(ruta);
@@ -33,7 +33,7 @@ public class RegistroUsuario {
         this.raiz=documento.getRootElement();
     }
     
-    private RegistroUsuario(String ruta,String rootName) throws IOException{
+    private RegistroUsuarioXML(String ruta,String rootName) throws IOException{
         this.ruta=ruta;
         this.raiz= new Element(rootName);
         this.documento= new Document(raiz);
@@ -46,12 +46,12 @@ public class RegistroUsuario {
         xmlo.output(documento,System.out);
     }
     
-    public static RegistroUsuario crearDocumento(String ruta) throws IOException{
-        return new RegistroUsuario(ruta,"usuarios");
+    public static RegistroUsuarioXML crearDocumento(String ruta) throws IOException{
+        return new RegistroUsuarioXML(ruta,"usuarios");
     }
     
-    public static RegistroUsuario abrirDocumento(String ruta) throws IOException, JDOMException{
-        return new RegistroUsuario(ruta);
+    public static RegistroUsuarioXML abrirDocumento(String ruta) throws IOException, JDOMException{
+        return new RegistroUsuarioXML(ruta);
     }
     
     public void addUser(Usuario usuario) throws IOException{
@@ -60,50 +60,65 @@ public class RegistroUsuario {
         Element eApellido= new Element("apellido");
         Element eFechaN= new Element("fechaNacimiento");
         Element eCorreo= new Element("correo");
-        Element eNombreUsuario= new Element("nombreUsuario");
-        Element eClave= new Element("clave");
+        Attribute aNombreUsuario= new Attribute("nombreUsuario",usuario.getNombreUsuario());
+        Attribute aClave= new Attribute("clave",usuario.getClave());
         
         
         
         eNombre.addContent(usuario.getNombre());
         eApellido.addContent(usuario.getApellido());
         eFechaN.addContent(usuario.getCorreo());
-        eNombreUsuario.addContent(usuario.getNombreUsuario());
-        eClave.addContent(usuario.getClave());
+        
         
         
         eUsuario.addContent(eNombre);
         eUsuario.addContent(eApellido);
         eUsuario.addContent(eFechaN);
         eUsuario.addContent(eCorreo);
-        eUsuario.addContent(eNombreUsuario);
-        eUsuario.addContent(eClave);
+        eUsuario.setAttribute(aNombreUsuario);
+        eUsuario.setAttribute(aClave);
        
         
         this.raiz.addContent(eUsuario);
         this.save();
     }
     
-    private Element buscar(String usuario){
+    private Element buscarNombre(String usuario){
         List<Element> list= (List<Element>) this.raiz.getChildren();
         for(Element e:list){
-            if(e.getAttributeValue("name_user").equalsIgnoreCase(usuario)){
+            if(e.getAttributeValue("nombreUsuario").equalsIgnoreCase(usuario)){
                 return e;
             }
         }
         return null;
     }
-    
-    public boolean verify(String userName){
-        Element user= buscar(userName);
+     private Element buscarClave(String clave){
+        List<Element> list= (List<Element>) this.raiz.getChildren();
+        for(Element e:list){
+            if(e.getAttributeValue("clave").equalsIgnoreCase(clave)){
+                return e;
+            }
+        }
+        return null;
+    }
+      public boolean verificarClave(String clave){
+        Element user= buscarClave(clave);
         if(user!=null){
             return true;
         }
         return false;
     }
     
-    public void removeUser(String userName) throws IOException{
-        Element user= buscar(userName);
+    public boolean verificarNombre(String nombreUsuario){
+        Element user= buscarNombre(nombreUsuario);
+        if(user!=null){
+            return true;
+        }
+        return false;
+    }
+    
+    public void removeUser(String nombreUsuario) throws IOException{
+        Element user= buscarNombre(nombreUsuario);
         this.raiz.removeContent(user);
         this.save();
     }

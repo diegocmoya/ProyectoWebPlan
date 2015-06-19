@@ -10,3 +10,4 @@ and open the template in the editor.
 
 #logoPrincipal{background: url(../img/logo.png); display: block; width: 870px; height: 119px; margin: auto;}
 .panel_izquierdo{margin: auto;}
+#footer{display: block; margin: auto;}

@@ -35,6 +35,21 @@
                                 <p:separator />
                                 <p:menuitem value="Quit" url="#" />
                             </p:submenu>
+                            <p:submenu label="Dispositivos" icon="ui-icon-document">
+                                <p:submenu label="New" icon="ui-icon-contact">
+                                    <p:menuitem value="Smartphones" url="#" />
+                                    <p:menuitem value="Tablets" url="#" />
+                                </p:submenu>
+                            </p:submenu>
+                            <p:submenu label="Planes" icon="ui-icon-document">
+                                <p:menuitem value="Nuevos Planes" url="#" />
+                            </p:submenu>
+                            <p:submenu label="Contactenos" icon="ui-icon-document">
+                                <p:menuitem value="Informacion" url="#" />
+                            </p:submenu>
+                            <p:submenu label="Soporte" icon="ui-icon-document">
+                                <p:menuitem value="Informacion" url="#" />
+                            </p:submenu>
                             <f:facet name="options">
                                 <p:commandButton type="button" value="Logout" />
                             </f:facet>
@@ -49,13 +64,13 @@
                 <ui:insert name="left">
                     <h:form>
                         <h:panelGrid columns="2" cellpadding="2" styleClass="panel_izquierdo">
-                            <h:outputLabel value="Usuario"/>
-                            <p:inputText />
-                            <h:outputLabel value="clave"/>
-                            <p:inputText />
-                            <p:commandButton ajax="false" value="Ingresar"/>
+                            <h:outputLabel  for="user" value="Usuario"/>
+                            <p:inputText id="user" value="#{usuario.nombreUsuario}"/>
+                            <h:outputLabel for="clave" value="clave"/>
+                            <p:inputText  id="clave" value="#{usuario.clave}"/>
+                            <p:commandButton ajax="false" value="Ingresar" actionListener="#{administradorUsuario.login(e)}" />
                             <p:commandLink ajax="false" value="Registrarse" action="RegistroUsuario"/>
-                               
+
 
                         </h:panelGrid>
                     </h:form>
@@ -63,13 +78,15 @@
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">
-                    Content
+                    content
                 </ui:insert>
             </div>
         </div>
         <div id="bottom">
             <ui:insert name="bottom">
-                Bottom
+                <div id="footer">
+                    <p>Este es un proyecto del curso Programacion II de la Universidad de Costa Rica, Sede del Pacifico</p>
+                </div>
             </ui:insert>
         </div>
 

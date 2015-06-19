@@ -33,7 +33,7 @@ and open the template in the editor.
                         <p:inputText value="#{administradorUsuario.usuario.clave}"/>
                         <p:outputLabel value="Confirmar clave"/>
                         <p:inputText/>
-                        <p:commandButton ajax="false" value="Registrar" action="index"/>
+                        <p:commandButton ajax="false" value="Registrar" actionListener="#{administradorUsuario.agregarUsuario(e)}" action="index"/>
                     </h:panelGrid>
                 </h:form>
             </ui:define>
