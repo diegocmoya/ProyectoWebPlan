@@ -36,10 +36,7 @@
                                 <p:menuitem value="Quit" url="#" />
                             </p:submenu>
                             <p:submenu label="Dispositivos" icon="ui-icon-document">
-                                <p:submenu label="New" icon="ui-icon-contact">
-                                    <p:menuitem value="Smartphones" url="#" />
-                                    <p:menuitem value="Tablets" url="#" />
-                                </p:submenu>
+                                <p:menuitem value="Conocelos" url="Dispositivos.xhtml" />
                             </p:submenu>
                             <p:submenu label="Planes" icon="ui-icon-document">
                                 <p:menuitem value="Nuevos Planes" url="#" />
@@ -74,18 +71,32 @@
 
                         </h:panelGrid>
                     </h:form>
+                    <div id="temaAndroid">
+                        
+                    </div>
                 </ui:insert>
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">
-                    content
+                    <div id="bannerPrincipal">
+                        
+                    </div>
+                    <div id="galeria">
+                        <p:galleria value="#{imagesView.images}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+                            <p:graphicImage value="resources/img/#{image}" alt="Image Description for #{image}" title="#{image}"/>
+                        </p:galleria>
+                    </div>
+                        
+                    
                 </ui:insert>
             </div>
         </div>
+        
         <div id="bottom">
             <ui:insert name="bottom">
-                <div id="footer">
-                    <p>Este es un proyecto del curso Programacion II de la Universidad de Costa Rica, Sede del Pacifico</p>
+                <div>
+                    <p id="texto">Este es un proyecto del curso Programacion II de la Universidad de Costa Rica, Sede del Pacifico</p>
+                    <p id="texto">Realizado por Diego Castro Moya B41620</p>
                 </div>
             </ui:insert>
         </div>

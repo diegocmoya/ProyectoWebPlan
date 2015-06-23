@@ -10,4 +10,7 @@ and open the template in the editor.
 
 #logoPrincipal{background: url(../img/logo.png); display: block; width: 870px; height: 119px; margin: auto;}
 .panel_izquierdo{margin: auto;}
-#footer{display: block; margin: auto;}
+#texto{ margin: auto; margin-left: 350px; margin-bottom: 1em;}
+#galeria{display: block; margin: auto; width: 870px; margin-left: 104px;}
+#bannerPrincipal{background: url(../img/banner-compra.jpg); display: block; width: 691px; height: 86px; margin-left: 20px; margin-bottom: 1em;}
+#temaAndroid{ background: url(../img/android-robot.png); margin-left: 85px; margin-top: -34px; top: 20px; left: -200px; width: 200px; height: 400px;}
