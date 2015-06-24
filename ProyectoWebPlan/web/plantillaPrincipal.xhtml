@@ -27,19 +27,11 @@
 
                         <p:menubar>
                             <p:submenu label="Inicio" icon="ui-icon-document">
-                                <p:submenu label="New" icon="ui-icon-contact">
-                                    <p:menuitem value="Project" url="#" />
-                                    <p:menuitem value="Other" url="#" />
-                                </p:submenu>
-                                <p:menuitem value="Open" url="#" />
-                                <p:separator />
-                                <p:menuitem value="Quit" url="#" />
+                                <p:menuitem value="Inicio de pagina" url="index.xhtml" />
                             </p:submenu>
-                            <p:submenu label="Dispositivos" icon="ui-icon-document">
-                                <p:menuitem value="Conocelos" url="Dispositivos.xhtml" />
-                            </p:submenu>
+                           
                             <p:submenu label="Planes" icon="ui-icon-document">
-                                <p:menuitem value="Nuevos Planes" url="#" />
+                                <p:menuitem value="Nuevos Planes" url="PagPlanes.xhtml" />
                             </p:submenu>
                             <p:submenu label="Contactenos" icon="ui-icon-document">
                                 <p:menuitem value="Informacion" url="#" />
@@ -48,7 +40,7 @@
                                 <p:menuitem value="Informacion" url="#" />
                             </p:submenu>
                             <f:facet name="options">
-                                <p:commandButton type="button" value="Logout" />
+                                <p:commandButton ajax="false" value="Logout" actionListener="#{administradorUsuario.logOut(e)}"/>
                             </f:facet>
                         </p:menubar>
                     </h:form>

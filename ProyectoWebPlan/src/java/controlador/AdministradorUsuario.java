@@ -40,6 +40,11 @@ public class AdministradorUsuario {
     public AdministradorUsuario() {
         faceContext=FacesContext.getCurrentInstance();
         httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        if(httpServletRequest.getSession().getAttribute("sessionUsuario")!=null)
+        {
+            usuario=(Usuario) httpServletRequest.getSession().getAttribute("sessionUsuario");
+        }
+    
     }
 
     public Usuario getUsuario() {
@@ -95,6 +100,14 @@ public class AdministradorUsuario {
             faceContext.addMessage(null, facesMessage);
             return "index.xhtml";
         }
+    }
+    
+    public String logOut(ActionEvent e)
+    {
+        httpServletRequest.getSession().removeAttribute("sessionUsuario");
+        facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO, "Session cerrada correctamente", null);
+        faceContext.addMessage(null, facesMessage);
+        return "index";
     }
     
 }
